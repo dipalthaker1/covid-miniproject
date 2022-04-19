@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Vaccination
+{% endblock %}
+{% block stylescss %}
+<link rel="stylesheet" href="{% static 'css/vaccination.css'%}">
+{% endblock %}
+{% block content %}
+<section>
+    <div class="fixed-header" style="background-color:#343A40">
+        <div class="navbar navbar-fixed-top navbar-custom ">
+            <div class="container">
+                <div class="navbar-header">
+                    <h1 style="font-size: 30px;text-align: center;color:azure">Vaccination Analysis</h1>
+                </div>
+                <div class="navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <a href="/"><button style="margin-left:20px" type="button" class="btn btn-success">Return to
+                                HomePage!</button></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="button-container">
+        <div class="left-image">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="{% static 'img/vaccinelogos/bharatcovaxin.jpg' %}" alt="" style="height: 400px; " />
+                    </div>
+                    <div class="card-back">
+                        <img src="{% static 'img/vaccinelogos/sinopharm.png' %}" alt="" style="height: 400px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="middle-image" style=" margin-top: 6px;">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="submit" name="dailyv" style="width: 320px; color: azure; background-color: #212529;"
+                    value="Daily Vaccination Per Country" class="btn btn-secondary" />
+                <br>
+                <br>
+                <input type="submit" name="dailyp" style="width: 320px; color: azure; background-color: #212529;"
+                    value="Daily Vaccination Per Million Per Country" class="btn btn-secondary" />
+                <br>
+                <!-- <br>
+                        <input type="submit" name="peoplev"  style="width: 320px; color: azure; background-color: #212529;" value="People Vaccinated Per Country" class="btn btn-primary" />
+                        <br> -->
+                <!-- <br>
+                        <input type="submit" name="peoplep" style="width: 320px; color: azure; background-color: #212529;" value="People Vaccinated Per Million per Country" class="btn btn-secondary" />
+                        <br> -->
+                <!-- <br>
+                        <input type="submit" name="totalc" style="width: 320px; color: azure; background-color: #212529;" value="Total Vaccination Per Country"  class="btn btn-secondary" />
+                        <br> -->
+                <br>
+                <input type="submit" name="estimate" style="width: 320px; color: azure; background-color: #212529;"
+                    value="Estimate Comparison Per Country" class="btn btn-secondary" />
+            </form>
+    
+        </div>
+        <div class="right-image">
+            <div class="right-image">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="{% static 'img/vaccinelogos/pfizer2.jpeg' %}" alt="" style="height: 400px;" />
+                        </div>
+                        <div class="card-back">
+                            <img src="{% static 'img/vaccinelogos/moderna.jpg' %}" alt="" style="height: 400px;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <img class="card-img-top" style="height:200px;width:691px;" src="{% static 'img/total-vaccination-progress.png' %}"
+                    alt="Card image cap">
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <img class="card-img-top" style="height:200px;width: 610px;margin-top: 17px;" src="{% static 'img/vaccination-phases.png' %}"
+                    alt="Card image cap">
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom-container">
+        {% if imageleft %}
+        <div class="renderedImage">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img src="{{imageleft}}" alt="" style="height: 400px;" />
+                    </div>
+                    <div class="card-back">
+                        <img src="{{imageright}}" alt="" style="height: 400px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="mainImage" style="display: flex;justify-content: center;align-items: center;">
+            <img src="{% static 'img/main1.png' %}" alt="" style="width: 85vw;" />
+        </div>
+        {% if estimatedgraph %}
+        <div class="middleImage">
+            <div class="left">
+                <img src="{% static 'img/middle1.png' %}" alt="" style="width: 50vw;" />
+            </div>
+            <div class="right">
+                <img src="{% static 'img/bottom1.png' %}" alt="" style="width: 50vw;" />
+            </div>
+        </div>
+        <div class="middleImage">
+            <div class="left">
+                <img src="{% static 'img/bottom2.png' %}" alt="" style="width: 50vw;" />
+            </div>
+            <div class="right">
+                <img src="{% static 'img/middle2.png' %}" alt="" style="width: 50vw;" />
+            </div>
+        </div>
+        <div class="middleImage">
+            <div class="left">
+                <img src="{% static 'img/middle3.png' %}" alt="" style="width: 50vw;" />
+            </div>
+            <div class="right">
+                <img src="{% static 'img/bottom3.png' %}" alt="" style="width: 50vw;" />
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
