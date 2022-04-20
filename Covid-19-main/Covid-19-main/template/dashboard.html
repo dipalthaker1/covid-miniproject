@@ -12,55 +12,43 @@ Covid-19 Dashboard
     <div class="container" style="justify-content: center !important;">
       <div class="navbar-header">
         <nav>
-          <a href="/"><span style="font-size: 50px;margin-left:10px;text-align: center;color:rgb(54, 54, 54)"><img
-                src="https://img.icons8.com/cute-clipart/50/000000/coronavirus.png" /> COVID-19 DASHBOARD</span></a>
+          <a href="/"><span style="font-size: 50px;margin-left:10px;text-align: center;color:rgb(29, 29, 29)"><img
+                src="https://img.icons8.com/cute-clipart/50/000000/coronavirus.png" /> PRECOVTION DASHBOARD</span></a>
+                
+                <center><div>Miniproject</div>
+                  <div href="/">Dipal Thaker &emsp;  Pratham Busa &emsp;  Harsh Sharma &emsp;  Jay bhanushali</div>
+                </center>
+                
         </nav>
       </div>
       <div class="navbar">
         <ul class="nav navbar-nav navbar-right">
-          <a href="/chatBot"><button type="button" class="btn btn-success">Got any queries, talk to our
+          <a href="/chatBot"><button type="button" style="margin-left:20px; background-color: rgb(97, 146, 76);" class="btn btn-success">Got any queries, talk to our
               Bot!</button></a>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <a href="/prediction"><button type="button" style="margin-left:20px" class="btn btn-success">Check out, AI
+          <a href="/prediction"><button type="button" style="margin-left:20px; background-color: rgb(97, 146, 76);" class="btn btn-success">Check out, AI
               Powered COVID Predictions!</button></a>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <a href="/vaccination"><button type="button" style="margin-left:20px" class="btn btn-success">Check out,
+          <a href="/vaccination"><button type="button" style="margin-left:20px; background-color: rgb(97, 146, 76);" class="btn btn-success">Check out,
               Vaccination Distribution!</button></a>
         </ul>
       </div>
     </div>
   </div>
 </div>
-<div class="container" style="width: 98%;">
+<div class="container" style="width: 99%;">
   <div class="row">
-    <div class="col-12 col-lg-3"
-      style="float: left;margin-top: 50px; max-height: 650px;max-width:400px;overflow: scroll; overflow-x:hidden;">
+    <div class="col-12 col-lg-3 "
+      style="float: right;max-width: 400px;margin-top:50px ;  max-height: 650px;overflow: scroll; overflow-x:hidden;">
       <div style="background-color: rgb(41, 41, 40);">
         <span style="color: rgb(255, 255, 255); text-align: center; font-size: x-small;">
-          <h4>Total Infected: <b>{{totalCount}}</b></h4>
+          <h4>Last 5 Days Count:</h4>
         </span>
       </div>
-      <div class="row">
-        <form method="post" enctype="multipart/form-data" action="selectCountry">
-          {% csrf_token %}
-          <div class="col-4" style="float: left;">
-            {% for country in countryNames %}
-            <div style="border-width: 2px; border: #333;">
-              <div>
-                <input class="btn btn-dark" type="submit" value={{country}} name="countryName"
-                  style="width:100px; margin:2px;">
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-          <div class="col-8" style="float: right;">
-            <canvas id="myChart" style="height: 6650px; width: 154px;"></canvas>
-          </div>
-        </form>
-
-
+      <div class="col-lg-12">
+        <div id="heatchart"></div>
       </div>
     </div>
     <div class="col-12 col-lg-6" style="float: left; margin-top: 50px;">
@@ -73,20 +61,38 @@ Covid-19 Dashboard
       <canvas id="lineChart" style="height: 400px;"></canvas>
       {% endif %}
     </div>
-    <div class="col-12 col-lg-3 "
-      style="float: right;max-width: 400px;margin-top:50px ;  max-height: 650px;overflow: scroll; overflow-x:hidden;">
-      <div style="background-color: rgb(41, 41, 40);">
-        <span style="color: rgb(255, 255, 255); text-align: center; font-size: x-small;">
-          <h4>Last 5 Days Count:</h4>
-        </span>
-      </div>
-      <div class="col-lg-12">
-        <div id="heatchart"></div>
-      </div>
+    
+    <div class="col-12 col-lg-3"
+    style="float: left;margin-top: 50px; max-height: 650px;max-width:400px;overflow: scroll; overflow-x:hidden;">
+    <div style="background-color: rgb(41, 41, 40);">
+      <span style="color: rgb(255, 255, 255); text-align: center; font-size: x-small;">
+        <h4>Total Infected: <b>{{totalCount}}</b></h4>
+      </span>
     </div>
+    <div class="row">
+      <form method="post" enctype="multipart/form-data" action="selectCountry">
+        {% csrf_token %}
+        <div class="col-4" style="float: left;">
+          {% for country in countryNames %}
+          <div style="border-width: 2px; border: #333;">
+            <div>
+              <input class="btn btn-dark" type="submit" value={{country}} name="countryName"
+                style="width:100px; margin:2px;">
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-8" style="float: right;">
+          <canvas id="myChart" style="height: 6650px; width: 154px;"></canvas>
+        </div>
+      </form>
+    </div>
+  </div>
+
   </div>
 </div>
 {% endblock %}
+
 
 {% block contentscript %}
 <!-- Left Map -->
@@ -123,8 +129,8 @@ Covid-19 Dashboard
   datasets: [
     {
       label: "Infected Counts",
-      backgroundColor: "rgb(50, 50,221 )",
-      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "rgb(97, 146, 76)",
+      borderColor: "rgb(97, 146, 76)",
       data: {{ barPlotVals| safe}},
         },
   ],
@@ -204,7 +210,7 @@ Covid-19 Dashboard
         name: 'Infected Counts',
         states: {
           hover: {
-            color: '#a4edba'
+            color: 'rgb(97, 146, 76)'
           }
         }
       }]
